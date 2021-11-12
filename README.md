@@ -12,3 +12,11 @@
 
 ### git checkout -b {branchName}
 
+### .gitignore
+
+### git add .
+
+### git remote add origin URL
+
+### git remote -v
+
