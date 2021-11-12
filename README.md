@@ -20,3 +20,4 @@
 
 ### git remote -v
 
+### git push origin {branchName}
