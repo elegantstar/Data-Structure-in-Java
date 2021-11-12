@@ -25,7 +25,7 @@ public class Main {
         minHeap.add(2);
         minHeap.add(3);
         minHeap.add(6);
-        System.out.println("--Min Heap--");
+        System.out.println("--Min Heap-- ");
         minHeap.printTree();
         while (!minHeap.isEmpty()) {
             System.out.println(minHeap.remove());
