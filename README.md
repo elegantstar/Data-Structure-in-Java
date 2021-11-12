@@ -21,3 +21,5 @@
 ### git remote -v
 
 ### git push origin {branchName}
+
+### git pull origin {branchName}
