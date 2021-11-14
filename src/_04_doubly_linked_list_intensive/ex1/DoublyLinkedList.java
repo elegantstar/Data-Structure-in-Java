@@ -1,17 +1,10 @@
 package _04_doubly_linked_list_intensive.ex1;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
-import java.util.Set;
-
-import com.sun.xml.internal.ws.util.xml.CDATA;
-
-import jdk.nashorn.internal.ir.WhileNode;
 
 public class DoublyLinkedList<E> implements List<E> {
 

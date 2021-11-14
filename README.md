@@ -1,5 +1,7 @@
 ### git status
 
+### git init
+
 ### git add {fileName}
 
 ### git commit -m  "{commitMessage}"
