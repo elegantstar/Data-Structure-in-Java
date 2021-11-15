@@ -20,6 +20,13 @@ public class Main {
         bTree.add(14);
         bTree.add(15);
 
+        bTree.remove(5);
+        bTree.remove(6);
+        bTree.remove(7);
+        bTree.remove(4);
+        bTree.remove(3);
+        bTree.remove(1);
+
         bTree.printTree();
         bTree.traversal();
 
