@@ -1,5 +1,12 @@
 package _15_binary_search_tree;
 
+/**
+ * Binary Search Tree의 시간 복잡도
+ * 검색 -> 평균: O(log n)   최악: O(n)
+ * 삽입 -> 평균: O(log n)   최악: O(log n)
+ * 삭제 -> 평균: O(log n)   최악: O(log n)
+ */
+
 public class BinarySearchTree {
 
     private Node root;

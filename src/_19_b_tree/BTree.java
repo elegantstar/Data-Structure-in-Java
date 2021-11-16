@@ -1,5 +1,12 @@
 package _19_b_tree;
 
+/**
+ * B Tree의 시간 복잡도
+ * 공간 -> 평균 O(n)
+ * 검색 -> 평균 O(log n)
+ * 삽입 -> 평균 O(log n)
+ * 삭제 -> 평균 O(log n)
+ */
 public class BTree {
     /**
      * B-Tree

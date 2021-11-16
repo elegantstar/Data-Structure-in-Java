@@ -72,6 +72,7 @@ public class NormalTree {
         preOrder(node.right);
     }
 
+    // 일반적인 사칙 연산이 중위 순회의 구조와 같다. -> (2 + 3) * (3 * 5) 연산자가 부모 노드에 위치.
     private void inOrder(Node node) {
         // TODO : 중위 순회
         if (node == null) {
@@ -82,6 +83,9 @@ public class NormalTree {
         inOrder(node.right);
     }
 
+    // 컴퓨터가 연산을 처리할 때 후위 순회 방식을 사용한다.
+    // (2 + 3) * (3 * 5)인 경우 -> 2, 3, +, 3, 5, *, *
+    // stack에 값을 저장하고 연산자가 나오면 꺼내서 연산하고, 연산된 결과를 stack에 저장하는 방식으로 반복하여 최종 결과를 계산한다.
     private void postOrder(Node node) {
         // TODO : 후위 순회
         if (node == null) {

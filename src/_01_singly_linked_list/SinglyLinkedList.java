@@ -1,5 +1,12 @@
 package _01_singly_linked_list;
 
+/**
+ * 배열과 단일 연결 리스트의 시간복잡도
+ * 검색 -> 단일 연결 리스트: O(n)    배열: O(1)
+ * 삽입 -> 단일 연결 리스트: O(1) (노드를 알고 있을 시)  배열: O(N) (재배치 발생)
+ * 삭제 -> 단일 연결 리스트: O(1) (노드를 알고 있을 시)  배열: O(N) (재배치 발생)
+ */
+
 public class SinglyLinkedList {
 
     Node head;

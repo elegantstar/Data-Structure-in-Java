@@ -3,6 +3,12 @@ package _17_red_black_tree;
 import static _17_red_black_tree.Node.BLACK;
 import static _17_red_black_tree.Node.RED;
 
+/**
+ * Red-Black Tree의 시간 복잡도
+ * 검색 -> 평균: O(log n)
+ * 삽입 -> 평균: O(log n)
+ * 삭제 -> 평균: O(log n)
+ */
 public class RedBlackTree {
 
     private Node root;

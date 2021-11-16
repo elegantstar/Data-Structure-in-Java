@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * 작은 값이 우선 순위가 높은 최소 heap
+ * 따라서 MinHeap은 최솟값을 찾는 데에 특화되어 있는 자료 구조이다.
  */
 public class MinHeap {
 

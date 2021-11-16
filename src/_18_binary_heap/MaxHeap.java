@@ -3,9 +3,23 @@ package _18_binary_heap;
 import java.util.Arrays;
 
 /**
-     * 큰 값이 우선 순위가 높은 최대 Heap
-     */
+ * Binary Heap의 시간 복잡도
+ * 공간 -> 평균 O(n)
+ * 검색 -> 평균 O(1)
+ * 삽입 -> 평균 O(log n)
+ * 삭제 -> 평균 O(log n)
+ *
+ * Heap의 가장 큰 특징
+ * 1. 부모 노드가 자식 노드 보다 더 높은 우선 순위를 가진다.
+ * 2. Complete Binary Tree이다.
+ * (Leaf 노드가 존재하는 level 전까지는 부모 노드가 2개의 자식 노드를 갖는 Full Binary Tree이고,
+ * Leaf 노드가 존재하는 level에서는 왼쪽부터 순차적으로 노드가 채워져 있는 이진 트리)
+ */
 public class MaxHeap {
+    /**
+     * 큰 값이 우선 순위가 높은 최대 Heap
+     * 따라서 MaxHeap은 최댓값을 찾는 데에 특화되어 있는 자료 구조이다.
+     */
 
     int[] queue;
     int size = 0;

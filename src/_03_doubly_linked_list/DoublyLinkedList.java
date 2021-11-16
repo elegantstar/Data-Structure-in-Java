@@ -1,5 +1,11 @@
 package _03_doubly_linked_list;
 
+/**
+ * 이중 연결 리스트의 시간 복잡도
+ * 검색 -> 평균: O(n)
+ * 삽입 -> 평균: O(1) (노드를 알고 있을 시)
+ * 삭제 -> 평균: O(1) (노드를 알고 있을 시)
+ */
 public class DoublyLinkedList {
 
     Node head = null;

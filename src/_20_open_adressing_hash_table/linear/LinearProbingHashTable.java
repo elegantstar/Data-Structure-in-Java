@@ -1,5 +1,11 @@
 package _20_open_adressing_hash_table.linear;
 
+/**
+ * Linear Probing Hash Table의 시간 복잡도
+ * 검색 -> 평균: O(1)   최악: O(n)
+ * 삽입 -> 평균: O(1)   최악: O(n)
+ * 삭제 -> 평균: O(1)   최악: O(n)
+ */
 public class LinearProbingHashTable {
     // 버킷으로 할당할 수 있는 최대 크기(int의 범위가 32bits이므로, 최상위 부호 비트 직전까지 shift. 즉, 2^30)
     private static final int MAXIMUM_CAPACITY = 1 << 30;

@@ -3,6 +3,10 @@ package _12_normal_binary_tree;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 트리 : 사이클이 존재하지 않는 연결 그래프
+ * 이진 트리 : 자식 노드가 2개 이하인 트리
+ */
 public class NormalTree {
 
     private Node root;
