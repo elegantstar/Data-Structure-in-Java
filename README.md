@@ -11,6 +11,13 @@
 
 #### Time Complexity
 
+|    **연산**     | 평균 | 최악 |
+| :-------------: | :--: | :--: |
+|  접근(Access)   | O(n) | O(n) |
+|  탐색(Search)   | O(n) | O(n) |
+| 삽입(Insertion) | O(1) | O(n) |
+| 삭제(Deletion)  | O(1) | O(n) |
+
 **1. 접근(Access) : O(1)**  
 -index를 알고 있다면 특정 원소에 바로 접근이 가능.
 
@@ -41,6 +48,12 @@ Linked List는 한 줄로 연결된 구조이지만 노드 간의 연결을 다�
 
 #### Time Complexity
 
+|         **연산**         | 평균 | 최악 |
+| :----------------------: | :--: | :--: |
+| 접근/탐색(Access/Search) | O(n) | O(n) |
+|     삽입(Insertion)      | O(1) | O(n) |
+|      삭제(Deletion)      | O(1) | O(n) |
+
 **1. 접근/탐색(Access/Search) : O(n)**  
 -특정 위치의 원소에 바로 접근이 불가능하여 리스트를 순회하는 것이 필연적.
 
@@ -65,6 +78,12 @@ Stack은 `DFS(Depth First Search; 깊이 우선 탐색)`, `후위 연산`, `괄�
 
 #### Time Complexity
 
+|    **연산**     | 평균 | 최악 |
+| :-------------: | :--: | :--: |
+|  탐색(Search)   | O(1) | O(n) |
+| 삽입(Insertion) | O(1) | O(1) |
+| 삭제(Deletion)  | O(1) | O(1) |
+
 **1. 탐색(Search) : O(n)**  
 -맨 위에 삽입된 데이터를 찾는 경우는 O(1)  
 -중간에 삽입된 데이터를 찾는 경우는 O(n)
@@ -83,11 +102,11 @@ Queue에서는 꺼낼 데이터를 `front`를 통해 알 수 있으며, 가장 �
 
 #### Time Complexity
 
-**1. 탐색(Search) : O(n)**
-
-**2. 삽입(Insertion) : O(1)**
-
-**3. 삭제(Deletion) : O(1)**
+|    **연산**     | 평균 |
+| :-------------: | :--: |
+|  탐색(Search)   | O(n) |
+| 삽입(Insertion) | O(1) |
+| 삭제(Deletion)  | O(1) |
 
 <hr>
 
@@ -155,9 +174,15 @@ Queue에서는 꺼낼 데이터를 `front`를 통해 알 수 있으며, 가장 �
 
 #### Time Complexity
 
+|    **연산**     |   평균   | 최악 |
+| :-------------: | :------: | :--: |
+|  탐색(Search)   | O(log n) | O(n) |
+| 삽입(Insertion) | O(log n) | O(n) |
+| 삭제(Deletion)  | O(log n) | O(n) |
+
 **1. 탐색(Search) : O(log n) / O(n)**  
 -루트 노드에서부터 높이가 하나씩 늘어날수록 노드의 수는 2배씩 증가하기 때문에 평균 시간 복잡도는 O(h) = O(log n)
--BST가 Skewed Tree(편향 트리)로 만들어진 경우, 최악의 시간 복잡도가 되어 O(n)
+-BST가 `Skewed Tree(편향 트리)`로 만들어진 경우, 최악의 시간 복잡도가 되어 O(n)
 
 **2. 삽입(Insertion) : O(log n) / O(n)**  
 -삽입 연산 또한 탐색 기반으로 동작하기 때문에 시간 복잡도는 탐색과 동일.
@@ -201,6 +226,12 @@ Max Heap은 **각 노드의 데이터가 자식 노드의 데이터보다 크거
 
 #### Time Complexity
 
+|    **연산**     |   평균   |   최악   |
+| :-------------: | :------: | :------: |
+|  탐색(Search)   |   O(1)   |   O(1)   |
+| 삽입(Insertion) | O(log n) | O(log n) |
+| 삭제(Deletion)  | O(log n) | O(log n) |
+
 **1. 탐색(Search) : O(1)**  
 -최댓값(최솟값) 탐색 시 O(1)
 
@@ -209,3 +240,7 @@ Max Heap은 **각 노드의 데이터가 자식 노드의 데이터보다 크거
 
 **3. 삭제(Deletion) : O(log n)**  
 -Heapify 연산의 시간 복잡도 O(log n)
+
+<hr>
+
+# Hash Table
