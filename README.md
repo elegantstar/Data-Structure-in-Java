@@ -135,7 +135,7 @@ Queue에서는 꺼낼 데이터를 `front`를 통해 알 수 있으며, 가장 �
 #### Complete Binary Tree (완전 이진 트리)
 
 마지막 레벨을 제외한 모든 레벨이 두 개의 자식 노드를 가지고 있으며, 마지막 레벨의 모든 노드들이 왼쪽부터 채워져 있는 이진 트리.  
-참고로 완전 이진 트리를 구현하는 경우, 배열을 활용하는 것이 가장 좋다. 왜냐하면, 노드의 개수가 n개일 때, i번째 노드에 대해 parent(i) = i / 2, left_child(i) = 2i, right_child(i) = 2i + 1의 index를 갖기 때문이다.
+참고로 완전 이진 트리를 구현하는 경우, 배열을 활용하는 것이 가장 좋다. 왜냐하면, 노드의 개수가 n개일 때, i번째 노드에 대해 parent(i) = i / 2, left_child(i) = 2i, right_child(i) = 2i + 1의 index를 갖기 때문이다. 이러한 특징은 `Heap`이라는 자료 구조를 구현할 때 용이하게 활용할 수 있다.
 
 ## Binary Search Tree (BST; 이진 탐색 트리)
 
@@ -168,3 +168,44 @@ Queue에서는 꺼낼 데이터를 `front`를 통해 알 수 있으며, 가장 �
 BST에서 발생하는 이런 문제점들로 인해 `Rebalancing` 기법이 고안 되었다. `Rebalancing`은 트리의 높이를 조정하는 기법으로, 트리가 편향되지 않도록 특정한 규칙에 따라 균형을 잡아주어 평균 시간 복잡도와 최악의 시간 복잡도가 모두 `O(log n)`이 되도록 만든다. 이런 기법을 구현한 트리는 대표적으로 `AVL Tree(Adelson-Velsky And Landis Tree)`, `Red-Black Tree`, `B-Tree(Balanced Tree)`가 있다.
 
 ## Binary Heap
+
+#### Heap
+
+`Heap`은 트리에 기반한 특별한 자료 구조로 우선 순위가 높은 데이터가 부모로 배치되고, 우선 순위가 낮은 데이터가 자식으로 배치되는 관계를 가지고 있다. 또한, Heap에는 `Binary Heap`, `Fibonacci Heap` 등이 존재하며, Heap의 특징을 이용해 `Priority Queue`, `Heap Sort` 등을 구현할 수 있다.
+
+#### Binary Heap
+
+`Binary Heap`은 `Complete Binary Tree`의 구조를 가지고 있으며, 데이터 삽입 및 삭제 시 우선 순위에 따라 트리의 노드를 재배치하는 과정을 거친다. 이러한 Binary Heap의 종류로는 `Max Heap(최대힙)`과 `Min Heap(최소힙)`이 있다.
+
+#### Binary Heap의 특징
+
+1. 자식보다 부모의 우선 순위가 더 높다.
+2. Complete Binary Tree의 특징을 가지고 있다.
+3. 형제 간에는 우선 순위가 존재하지 않는다.
+4. 루트 노드는 우선 순위가 가장 높은 데이터를 가지고 있다.
+
+이러한 특징들로 인해 **Binary Heap은 최댓값을 찾거나 최솟값을 찾는 데에 특화**되어 있으며, 그것이 각각 `Max Heap`과 `Min Heap`이다. `Java Collection`에서 Heap의 구현체로는 `Priority Queue`가 있다.
+
+Max Heap은 **각 노드의 데이터가 자식 노드의 데이터보다 크거나 같은 Complete Binary Tree**이다. Complete Binary Tree의 특징 덕분에 Heap 역시 배열로 구현하는 것이 좋다. Max Heap은 항상 Root Node에 있는 값이 가장 크기 때문에 최댓값 탐색 시 시간 복잡도는 O(1)이 된다. 데이터를 삽입하는 경우, 삽입하는 노드는 Heap의 가장 마지막 노드로 삽입되며 Heap의 성질을 만족하도록 하기 위해 부모 노드의 우선 순위와 비교하여 부모 노드의 우선 순위보다 높으면 `swap`하는 방식으로 제 자리를 찾아 위로 올라간다(`UpHeap`). 데이터를 삭제하는 경우, Heap의 가장 마지막 노드를 Root로 대체시키고 새로운 Root는 Heap의 성질을 만족하도록 제 자리를 찾아 내려간다(`DownHeap`). 이렇게 Heap의 구조를 유지하기 위해 노드를 재위치시키는 것을 `힙 생성 알고리즘`이라고 하며, `Heapify`라고도 부른다. 이러한 Heapify 연산의 시간 복잡도는 O(log n)이 되기 때문에 삽입과 삭제 연산의 시간 복잡도는 O(log n)이 된다.
+
+#### Binary Heap에서의 데이터 삽입
+
+1. 노드를 맨 마지막 Leaf 노드로 삽입한다.
+2. 부모 노드의 우선 순위가 삽입된 노드보다 높을 때까지 Swap한다. (UpHeap)
+
+#### Binary Heap에서의 데이터 삭제
+
+1. Root 노드를 맨 마지막 Leaf 노드와 Swap한다.
+2. Swap된 Leaf 노드를 삭제한다.
+3. 새로운 Root 노드를 자식 노드의 우선 순위와 비교하되 자식 중에서 더 우선 순위가 높은 자식 노드와 Swap하고, 자식 노드의 우선 순위가 낮을 때까지 Swap한다. (DownHeap)
+
+#### Time Complexity
+
+**1. 탐색(Search) : O(1)**  
+-최댓값(최솟값) 탐색 시 O(1)
+
+**2. 삽입(Insertion) : O(log n)**  
+-Heapify 연산의 시간 복잡도 O(log n)
+
+**3. 삭제(Deletion) : O(log n)**  
+-Heapify 연산의 시간 복잡도 O(log n)
