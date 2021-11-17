@@ -1,6 +1,6 @@
 package _02_singly_linked_list_intensive.head_node_list;
     /**
-     * Head Node가 존재하는  단일 연결 리스트
+     * Head Node가 존재하는 단일 연결 리스트
      * 기존의 단일 연결 리스트와 동일하게
      * 데이터가 존재하는 첫 번째 노드가 index 0이다.
      */
