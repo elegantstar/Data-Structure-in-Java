@@ -23,7 +23,7 @@ public class SinglyLinkedList {
         int nodeIndex = 0;
         Node pointer = head;
         /**
-         *  찾는  노드의 index와 노드의 순서가 동일할 때까지
+         *  찾는 노드의 index와 노드의 순서가 동일할 때까지
          *  노드의 참조값을 이용하여 이동한다.
          */
         while (nodeIndex != searchIndex) {
