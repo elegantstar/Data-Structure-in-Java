@@ -1,6 +1,6 @@
 # Array vs LinkedList
 
-### Array
+## Array
 
 `Array`는 가장 기본적인 자료 구조 중 하나로, 논리적 저장 순서와 물리적 저장 순서가 동일한 특징을 갖는다.
 따라서 `인덱스(index)` 로 각각의 원소(element)에 접근할 수 있다. 이러한 특성 덕분에 찾고자 하는 원소의 인덱스 값만 알고 있다면 Big-O(1) 만에 해당 원소에 접근할 수 있다. 즉, **Random access**가 가능하다는 장점이 있다는 것이다.
@@ -26,7 +26,7 @@
 -가장 뒤쪽 원소를 삭제하는 경우는 O(1)  
 -가장 앞쪽 원소를 삭제하는 경우는 O(n)
 
-### Linked List
+## Linked List
 
 `Linked List`는 데이터와 참조값을 갖는 노드들이 한 줄로 연결 되어 있는 방식으로 데이터를 저장하는 자료 구조이다.
 따라서 삽입(삭제) 시에는 노드를 생성(삭제)하고 연결(연결 해제)만 해주면 되기 때문에 단순한 삽입(삭제)의 시간 복잡도는 O(1)이 된다.
@@ -56,7 +56,7 @@ Linked List는 한 줄로 연결된 구조이지만 노드 간의 연결을 다�
 
 # Stack and Queue
 
-### Stack
+## Stack
 
 `Stack`은 선형 구조를 갖는 자료 구조로서, 데이터의 삽입과 삭제가 한 쪽 끝에서만 가능하다. 입구와 출구가 동일한 상자와 같은 구조로 인해 마지막에 들어간 데이터가 가장 먼저 나오는 `후입선출(LIFO - Last In First Out)`의 특징을 갖는다.  
 Stack에서는 데이터를 넣는 것을 `Push`, 꺼내는 것을 `Pop`, 마지막 위치(`top`)의 데이터를 읽는 것을 `Peek`이라고 한다.
@@ -73,7 +73,7 @@ Stack은 `DFS(Depth First Search; 깊이 우선 탐색)`, `후위 연산`, `괄�
 
 **3. 삭제(Deletion) : O(1)**
 
-### Queue
+## Queue
 
 `Queue` 또한 선형 구조를 갖는 자료 구조이며, Stack과는 달리 먼저 들어간 데이터가 먼저 나오는 `선입선출(FIFO - First In First Out)`의 특징을 갖는다. Queue를 구현하는 방법으로는 크게 Array를 활용한 `Circlular Queue`와 LinkedList를 활용한 Queue가 있다.  
 Queue에서는 꺼낼 데이터를 `front`를 통해 알 수 있으며, 가장 마지막에 삽입된 데이터는 `rear`를 통해 알 수 있다. 또한, 데이터를 삽입하는 것을 `Add`, 꺼내는 것을 `Poll`이라고 한다.
@@ -137,7 +137,7 @@ Queue에서는 꺼낼 데이터를 `front`를 통해 알 수 있으며, 가장 �
 마지막 레벨을 제외한 모든 레벨이 두 개의 자식 노드를 가지고 있으며, 마지막 레벨의 모든 노드들이 왼쪽부터 채워져 있는 이진 트리.  
 참고로 완전 이진 트리를 구현하는 경우, 배열을 활용하는 것이 가장 좋다. 왜냐하면, 노드의 개수가 n개일 때, i번째 노드에 대해 parent(i) = i / 2, left_child(i) = 2i, right_child(i) = 2i + 1의 index를 갖기 때문이다.
 
-### Binary Search Tree (BST; 이진 탐색 트리)
+## Binary Search Tree (BST; 이진 탐색 트리)
 
 #### 배열 또는 리스트 방식 탐색 구조의 단점
 
@@ -166,3 +166,5 @@ Queue에서는 꺼낼 데이터를 `front`를 통해 알 수 있으며, 가장 �
 -삭제 연산 또한 탐색 기반으로 동작하기 때문에 시간 복잡도는 탐색과 동일.
 
 BST에서 발생하는 이런 문제점들로 인해 `Rebalancing` 기법이 고안 되었다. `Rebalancing`은 트리의 높이를 조정하는 기법으로, 트리가 편향되지 않도록 특정한 규칙에 따라 균형을 잡아주어 평균 시간 복잡도와 최악의 시간 복잡도가 모두 `O(log n)`이 되도록 만든다. 이런 기법을 구현한 트리는 대표적으로 `AVL Tree(Adelson-Velsky And Landis Tree)`, `Red-Black Tree`, `B-Tree(Balanced Tree)`가 있다.
+
+## Binary Heap
