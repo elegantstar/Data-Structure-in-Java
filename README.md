@@ -1,27 +1,29 @@
-### git status
+#Array vs LinkedList
+###Array
+Array는 가장 기본적인 자료 구조 중 하나로, 논리적 저장 순서와 물리적 저장 순서가 동일한 특징을 갖는다.
+따라서 인덱스(index)로 각각의 원소(element)에 접근할 수 있다. 이러한 특성 덕분에 찾고자 하는 원소의 인덱스 값만 알고 있다면 Big-O(1) 만에 해당 원소에 접근할 수 있다.
+즉, Random access가 가능하다는 장점이 있다는 것이다.
 
-### git init
+그러나 삽입, 삭제 과정에서는 해당 원소에 접근하여 작업을 완료한 이후(O(1)) 추가적인 비용(cost)이 발생한다.
+예를 들어, 삭제한 원소의 인덱스 보다 큰 인덱스를 갖는 원소들을 shift 해줘야 하는데, 이 경우의 최악의 시간 복잡도는 O(n)이 된다.
 
-### git add {fileName}
+또한, Array는 생성할 때 크기를 할당해 주어야 한다. 따라서 사용하지 않는 메모리 공간까지도 미리 계획하여 메모리를 할당 해야 하고, 공간이 부족한 경우 확장을 위한 비용이 추가된다는 점은 단점으로 작용한다.
 
-### git commit -m  "{commitMessage}"
 
-### git log
+###Linked List
+Linked List는 데이터와 참조값을 갖는 노드들이 한 줄로 연결 되어 있는 방식으로 데이터를 저장하는 자료 구조이다.
+따라서 삽입(삭제) 시에는 노드를 생성(삭제)하고 연결(연결 해제)만 해주면 되기 때문에 단순한 삽입(삭제)의 시간 복잡도는 O(1)이 된다.
 
-### git branch
+그러나 Linked List는 Array와 달리 index가 존재하지 않기 때문에 문제점이 있다. 한 줄로 연결 되어 있는 Linked List의 구조적인 특징 때문에
+특정 노드를 탐색(Search)하기 위해서는 노드들을 순차적으로 이동하며 탐색을 하게 된다. 따라서 탐색 동작의 경우, 시간 복잡도는 O(n)이다.
 
-### git checkout {branchName}
+결국 Linked List에서 삽입과 삭제를 진행할 때, 해당 노드를 탐색하는 연산이 추가적으로 발생하기 때문에 삽입, 삭제 시 최종적인 시간 복잡도는 O(n)이 된다.
 
-### git checkout -b {branchName}
+Linked List의 공간적인 특징으로는 Array와 달리 크기가 가변적이라는 것이다. 데이터를 삽입할 때 노드를 생성하기 때문에 런타임 환경에서도 가변 배열처럼 사용할 수 있고, 때문에 메모리를 상대적으로 절약할 수 있다.
 
-### .gitignore
+Linked List는 한 줄로 연결된 구조이지만 노드 간의 연결을 다양화함으로써 Tree 구조의 근간으로 활용되며, Tree에서 Linked List의 특징이 더욱 강력하게 발휘된다.
 
-### git add .
+<hr>
 
-### git remote add origin URL
-
-### git remote -v
-
-### git push origin {branchName}
-
-### git pull origin {branchName}
+#Stack and Queue
+###Stack
