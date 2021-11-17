@@ -64,6 +64,12 @@ Linked List는 한 줄로 연결된 구조이지만 노드 간의 연결을 다�
 **3. 삭제(Deletion) : O(1) / O(n)**  
 -맨 앞, 맨 뒤의 원소를 삭제하는 경우는 O(1)  
 -중간 삭제를 위해 탐색을 해야 하는 경우는 O(n)
+<br>
+
+##### Implementation Practice
+
+- [Singly Linked List 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_01_singly_linked_list/SinglyLinkedList.java)
+- [Doubly Linked List 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_04_doubly_linked_list_intensive/ex1/DoublyLinkedList.java)
 
 <hr>
 
@@ -107,6 +113,15 @@ Queue에서는 꺼낼 데이터를 `front`를 통해 알 수 있으며, 가장 �
 |  탐색(Search)   | O(n) |
 | 삽입(Insertion) | O(1) |
 | 삭제(Deletion)  | O(1) |
+
+<br>
+
+##### Implementation Practice
+
+- [Array Stack 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_05_array_stack/ArrayStack.java)
+- [Linked List Stack 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_06_list_stack/ListStack.java)
+- [Circular Queue 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_07_circle_queue/CircleQueue.java)
+- [Linked List Queue 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_08_list_queue/ListQueue.java)
 
 <hr>
 
@@ -155,6 +170,13 @@ Queue에서는 꺼낼 데이터를 `front`를 통해 알 수 있으며, 가장 �
 
 마지막 레벨을 제외한 모든 레벨이 두 개의 자식 노드를 가지고 있으며, 마지막 레벨의 모든 노드들이 왼쪽부터 채워져 있는 이진 트리.  
 참고로 완전 이진 트리를 구현하는 경우, 배열을 활용하는 것이 가장 좋다. 왜냐하면, 노드의 개수가 n개일 때, i번째 노드에 대해 parent(i) = i / 2, left_child(i) = 2i, right_child(i) = 2i + 1의 index를 갖기 때문이다. 이러한 특징은 `Heap`이라는 자료 구조를 구현할 때 용이하게 활용할 수 있다.
+<br>
+
+##### Implementation Practice
+
+- [Binary Tree 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_12_normal_binary_tree/NormalTree.java)
+- [Binary Tree Traversal(DFS) 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_13_binary_tree_DFS/NormalTree.java)
+- [Binary Tree Traversal(BFS) 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_14_binary_tree_BFS/NormalTree.java)
 
 ## Binary Search Tree (BST; 이진 탐색 트리)
 
@@ -191,6 +213,14 @@ Queue에서는 꺼낼 데이터를 `front`를 통해 알 수 있으며, 가장 �
 -삭제 연산 또한 탐색 기반으로 동작하기 때문에 시간 복잡도는 탐색과 동일.
 
 BST에서 발생하는 이런 문제점들로 인해 `Rebalancing` 기법이 고안 되었다. `Rebalancing`은 트리의 높이를 조정하는 기법으로, 트리가 편향되지 않도록 특정한 규칙에 따라 균형을 잡아주어 평균 시간 복잡도와 최악의 시간 복잡도가 모두 `O(log n)`이 되도록 만든다. 이런 기법을 구현한 트리는 대표적으로 `AVL Tree(Adelson-Velsky And Landis Tree)`, `Red-Black Tree`, `B-Tree(Balanced Tree)`가 있다.
+<br>
+
+##### Implementation Practice
+
+- [Binary Search Tree 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_15_binary_search_tree/BinarySearchTree.java)
+- [AVL Tree 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_16_avl_tree/AVLTree.java)
+- [Red-Black Tree 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_17_red_black_tree/RedBlackTree.java)
+- [B-Tree 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_19_b_tree/BTree.java)
 
 ## Binary Heap
 
@@ -240,6 +270,12 @@ Max Heap은 **각 노드의 데이터가 자식 노드의 데이터보다 크거
 
 **3. 삭제(Deletion) : O(log n)**  
 -Heapify 연산의 시간 복잡도 O(log n)
+<br>
+
+##### Implementation Practice
+
+- [Max Heap 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_18_binary_heap/MaxHeap.java)
+- [Min Heap 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_18_binary_heap/MinHeap.java)
 
 <hr>
 
