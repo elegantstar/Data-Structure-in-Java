@@ -292,7 +292,7 @@ Hash Table은 해시 함수를 이용하는 특성 때문에 해시값이 중복
 
 #### Hash Function(해시 함수)
 
-`Hash Function`은 임의의 길이의 데이터를 고정된 길이의 데이터로 `Mapping`하는 함수이다. 일반적으로 domain이 codomain보다 크기 때문에 비둘기집의 원리에 의해 반드시 충돌쌍이 발생하게 된다. `Hash Collision`이 많아질수록 Search 동작의 시간 복잡도는 O(1)서 O(n)에 수렴하게 된다. 그렇기 때문에 어설픈 Hash Function을 사용하는 것은 Hash를 Hash 답지 않게 만드는 것이므로, 좋은 성능의 Hash Table을 위해서는 좋은 Hash Fucntion을 만들어야만 한다.  
+`Hash Function`은 임의의 길이의 데이터를 고정된 길이의 데이터로 `Mapping`하는 함수이다. 일반적으로 domain이 codomain보다 크기 때문에 비둘기집의 원리에 의해 반드시 충돌쌍이 발생하게 된다. `Hash Collision`이 많아질수록 Search 동작의 시간 복잡도는 O(1)에서 O(n)에 수렴하게 된다. 그렇기 때문에 어설픈 Hash Function을 사용하는 것은 Hash를 Hash 답지 않게 만드는 것이므로, 좋은 성능의 Hash Table을 위해서는 좋은 Hash Fucntion을 만들어야만 한다.  
 Hashing 된 Index에 이미 다른 값이 들어 있는 경우, 추가하고자 하는 데이터를 저장할 다른 인덱스를 찾아야 한다. Hash Table을 사용하기 위해서는 이렇게 충돌 발생을 해결하기 위한 방법은 필수적이며, 이를 위해 `Additional Hash Function(보조 해시 함수)`를 이용하거나 동일한 Hash value를 갖는 데이터들을 `Linked List`로 연결하여 저장하는 등의 방식을 활용할 수 있다.
 
 #### Bucket(버킷)
@@ -307,7 +307,7 @@ Hashing 된 Index에 이미 다른 값이 들어 있는 경우, 추가하고자 
 
 충돌 발생 시 이에 대응하기 위한 방법으로는 크게 `Separate Chaining(체이닝; 분리 연결)`과 `Open-Addressing(직접 주소 개방)`이 있다.
 
-### Separate Chaining
+### Chaining(체이닝)
 
 ![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kr60qbu5.png)
 [이미지 출처 - 코드라떼](https://www.codelatte.io/)
@@ -316,8 +316,31 @@ Hashing 된 Index에 이미 다른 값이 들어 있는 경우, 추가하고자 
 
 #### Linked List를 이용한 방식
 
-각 노드들을 Linear하게 연결하는 것으로 각각의 bucket들을 Linked List로 만들어 Collision이 발생하면 해당 bucket의 list에 추가하는 방식이다. Linked List의 특징을 그대로 이어 받아 삽입과 삭제가 간단하다. 하지만 단점 역시도 그대로 적용 되기 때문에 데이터 저장 시 Linked List 자체의 오버헤드가 부담이 된다. 또한, 연결된 노드의 수가 많아지는 경우 Search에 걸리는 시간이 길어지는 것은 피할 수 없다. 그러나 bucket 만을 사용하는 Open Addressing 방식과 비교하면 테이블의 확장을 늦출 수는 있다.
+각 노드들을 Linear하게 연결하는 것으로 각각의 bucket들을 Linked List로 만들어 Collision이 발생하면 해당 bucket의 list에 추가하는 방식이다. Linked List의 특징을 그대로 이어 받아 삽입과 삭제가 간단하다. 하지만 단점 역시도 그대로 적용 되기 때문에 데이터 저장 시 Linked List 자체의 오버헤드가 부담이 된다. 또한, Collision의 빈도가 많아 bucket의 특정 index에 key가 몰리는 경우 Search에 걸리는 시간 복잡도가 O(n)에 수렴하게 되는 것은 피할 수 없다. 삽입과 삭제 시에도 탐색의 과정이 필요하기 때문에 같은 문제가 발생한다. 그러나 bucket 만을 사용하는 Open Addressing 방식과 비교하면 테이블의 확장을 늦출 수는 있다.
+
+#### Time Complexity
+
+|    **연산**     | 평균 | 최악 |
+| :-------------: | :--: | :--: |
+|  탐색(Search)   | O(1) | O(n) |
+| 삽입(Insertion) | O(1) | O(n) |
+| 삭제(Deletion)  | O(1) | O(n) |
+
+<br>
 
 #### Tree를 이용하는 방식 (Red-Black Tree)
 
-Linked List를 이용한 Chaining과 원리는 같으나, Linked List를 사용하지 않고 Tree 구조를 사용하는 `Non-Linear` 방식이다.`Java Collection`의 `Hash Map`에서는 `Red-Black Tree`를 사용하고 있다. 때문에 Search의 시간 복잡도를 O(log n)으로 만들 수 있는 `Red-Black Tree`의 장점으로 데이터의 양이 많은 상황에서 발생하는 성능 이슈를 해소할 수 있다. 다만, 데이터의 개수가 적은 상황에서는 Red-Black Tree를 사용하는 것보다 Linked List를 사용하는 것이 더 적합할 수 있다. Tree는 기본적으로 메모리 샤용량이 크기 때문이다.
+Linked List를 이용한 Chaining과 원리는 같으나, Linked List를 사용하지 않고 Tree 구조를 사용하는 `Non-Linear` 방식이다.`Java Collection`의 `Hash Map`에서는 `Red-Black Tree`를 사용하고 있다. 때문에 Search의 시간 복잡도를 `O(log n)`으로 만들 수 있는 `Red-Black Tree`의 장점으로 데이터의 양이 많은 상황에서 발생하는 성능 이슈를 해소할 수 있다.  
+다만, 완벽한 자료 구조라는 것은 존재하지 않기 때문에 Trade-Off를 해야 하는 부분이 있다. 일반적인 Linked List보다 Red-Black Tree의 노드에 더 많은 변수가 선언되어 있기 때문에 더 많은 메모리를 소모한다. 또한 Red-Black Tree는 균형을 잡기 위한 재배치 연산으로 인해 키의 삽입/삭제 성능이 떨어질 수 있다.
+
+그렇기 때문에 **충돌된 키 개수의 임계치에 따라서 구조를 바꾸는 전략**을 취할 수 있다. 충돌된 키의 개수가 적을 경우에는 Linked List를 사용하고, 충돌된 키의 개수가 많을 경우에는 Red-Black Tree를 사용하는 것이다. 충돌이 빈번하지 않은 경우는 Linked List의 장점을 극대화 하고, 충돌이 빈번한 경우는 Tree로 변경하면 된다. 이러한 방법은 **실제로 Java Collection의 Hash Map을 구현하고 있는 방법**이다.
+
+|    **연산**     | 평균 |   최악   |
+| :-------------: | :--: | :------: |
+|  탐색(Search)   | O(1) | O(log n) |
+| 삽입(Insertion) | O(1) | O(log n) |
+| 삭제(Deletion)  | O(1) | O(log n) |
+
+<br>
+
+#### 구조를 변경하는 충돌 키 개수의 임계치
