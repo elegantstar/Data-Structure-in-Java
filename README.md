@@ -280,3 +280,44 @@ Max Heap은 **각 노드의 데이터가 자식 노드의 데이터보다 크거
 <hr>
 
 # Hash Table
+
+`Hash Table`은 `key`와 `value`의 구조를 가진 데이터를 저장하는 자료 구조로, `Hash Function(해시 함수)`을 이용하여 key를 `Hash Value(해시값)`으로 변환하여 Hash value를 `Index`로 사용하는 것이 특징이다. `Hash Table`은 `Associated Array`, `Dictionary`, `Symbol Table`로 불리기도 한다.
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kr60q1yd.png)
+[이미지 출처 - 코드 라떼](https://www.codelatte.io/)
+
+Hash Table은 해시 함수를 이용하는 특성 때문에 해시값이 중복되는 `Hash Collision(해시 충돌)`이 발생할 수 있다. **서로 다른 key들이 해시 함수를 통해 동일한 해시값으로 변환되는 것을 해시 충돌**이라고 한다. 따라서 좋은 해시 함수는 충돌 가능성을 낮추는 함수이다. 해시값의 중복을 최소화하기 위해서는 해시값을 최대한 고르게 분포시킬 수 있는 함수를 만들어야 하며, 충돌 발생 시 어떻게 처리하는지에 따라 Hash Table의 성능이 달라지게 된다.
+
+### Hash Table의 구성
+
+#### Hash Function(해시 함수)
+
+`Hash Function`은 임의의 길이의 데이터를 고정된 길이의 데이터로 `Mapping`하는 함수이다. 일반적으로 domain이 codomain보다 크기 때문에 비둘기집의 원리에 의해 반드시 충돌쌍이 발생하게 된다. `Hash Collision`이 많아질수록 Search 동작의 시간 복잡도는 O(1)서 O(n)에 수렴하게 된다. 그렇기 때문에 어설픈 Hash Function을 사용하는 것은 Hash를 Hash 답지 않게 만드는 것이므로, 좋은 성능의 Hash Table을 위해서는 좋은 Hash Fucntion을 만들어야만 한다.  
+Hashing 된 Index에 이미 다른 값이 들어 있는 경우, 추가하고자 하는 데이터를 저장할 다른 인덱스를 찾아야 한다. Hash Table을 사용하기 위해서는 이렇게 충돌 발생을 해결하기 위한 방법은 필수적이며, 이를 위해 `Additional Hash Function(보조 해시 함수)`를 이용하거나 동일한 Hash value를 갖는 데이터들을 `Linked List`로 연결하여 저장하는 등의 방식을 활용할 수 있다.
+
+#### Bucket(버킷)
+
+`Bucket`은 해시값을 인덱스로 하여 데이터에 접근할 수 있는 배열을 말한다. 배열 접근의 시간 복잡도는 O(1)이므로 인덱스의 위치에 찾고자 하는 키가 존재한다면 가장 빠르게 찾을 수 있다. 그러나 Hash Collision의 발생 빈도가 커질수록 시간 복잡도는 증가하게 된다.
+
+#### Entry(엔트리)
+
+해시 테이블은 key와 value를 저장하는 구조이므로 노드를 이용하여 key와 value를 저장할 수 있다. 이렇게 key와 value를 저장하는 노드를 Entry라고 한다.
+
+## How To Resolve the Hash Collision
+
+충돌 발생 시 이에 대응하기 위한 방법으로는 크게 `Separate Chaining(체이닝; 분리 연결)`과 `Open-Addressing(직접 주소 개방)`이 있다.
+
+### Separate Chaining
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kr60qbu5.png)
+[이미지 출처 - 코드라떼](https://www.codelatte.io/)
+
+**`Chaining`은 `key-value` 삽입 시 동일한 hash value가 존재하는 경우에 노드를 연결하여 저장하는 방식**이다. key의 개수가 bucket의 크기보다 큰 경우 Hash Table의 적재율이 100%를 넘어갈 수 있다. 또한 노드 간의 연결이 많을 경우 Search 동작에 걸리는 시간 복잡도가 늘어날 수 있다. 예를 들어, 3번 index에 100개의 노드가 연결되어 있고 찾고자 하는 key가 3번 index에 있다면 최악의 경우 시간 복잡도는 O(100)이 될 수 있는 것이다. 따라서 이 문제를 완화하기 위한 방법으로 적재율에 따라 bucket의 크기를 늘리거나 노드 간 연결을 `Linear Structure`가 아닌 `Non-Linear Structure`로 변경할 수 있다.
+
+#### Linked List를 이용한 방식
+
+각 노드들을 Linear하게 연결하는 것으로 각각의 bucket들을 Linked List로 만들어 Collision이 발생하면 해당 bucket의 list에 추가하는 방식이다. Linked List의 특징을 그대로 이어 받아 삽입과 삭제가 간단하다. 하지만 단점 역시도 그대로 적용 되기 때문에 데이터 저장 시 Linked List 자체의 오버헤드가 부담이 된다. 또한, 연결된 노드의 수가 많아지는 경우 Search에 걸리는 시간이 길어지는 것은 피할 수 없다. 그러나 bucket 만을 사용하는 Open Addressing 방식과 비교하면 테이블의 확장을 늦출 수는 있다.
+
+#### Tree를 이용하는 방식 (Red-Black Tree)
+
+Linked List를 이용한 Chaining과 원리는 같으나, Linked List를 사용하지 않고 Tree 구조를 사용하는 `Non-Linear` 방식이다.`Java Collection`의 `Hash Map`에서는 `Red-Black Tree`를 사용하고 있다. 때문에 Search의 시간 복잡도를 O(log n)으로 만들 수 있는 `Red-Black Tree`의 장점으로 데이터의 양이 많은 상황에서 발생하는 성능 이슈를 해소할 수 있다. 다만, 데이터의 개수가 적은 상황에서는 Red-Black Tree를 사용하는 것보다 Linked List를 사용하는 것이 더 적합할 수 있다. Tree는 기본적으로 메모리 샤용량이 크기 때문이다.
