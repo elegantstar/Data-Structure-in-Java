@@ -293,7 +293,7 @@ Hash Table은 해시 함수를 이용하는 특성 때문에 해시값이 중복
 #### Hash Function(해시 함수)
 
 `Hash Function`은 임의의 길이의 데이터를 고정된 길이의 데이터로 `Mapping`하는 함수이다. 일반적으로 domain이 codomain보다 크기 때문에 비둘기집의 원리에 의해 반드시 충돌쌍이 발생하게 된다. `Hash Collision`이 많아질수록 Search 동작의 시간 복잡도는 O(1)에서 O(n)에 수렴하게 된다. 그렇기 때문에 어설픈 Hash Function을 사용하는 것은 Hash를 Hash 답지 않게 만드는 것이므로, 좋은 성능의 Hash Table을 위해서는 좋은 Hash Fucntion을 만들어야만 한다.  
-Hashing 된 Index에 이미 다른 값이 들어 있는 경우, 추가하고자 하는 데이터를 저장할 다른 인덱스를 찾아야 한다. Hash Table을 사용하기 위해서는 이렇게 충돌 발생을 해결하기 위한 방법은 필수적이며, 이를 위해 `Additional Hash Function(보조 해시 함수)`를 이용하거나 동일한 Hash value를 갖는 데이터들을 `Linked List`로 연결하여 저장하는 등의 방식을 활용할 수 있다.
+Hashing 된 Index에 이미 다른 값이 들어 있는 경우, 추가하고자 하는 데이터를 저장할 다른 인덱스를 찾아야 한다. Hash Table을 사용하기 위해서는 이렇게 충돌 발생을 해결하기 위한 방법은 필수적이며, 이를 위해 `Supplement Hash Function(보조 해시 함수)`를 이용하거나 동일한 Hash value를 갖는 데이터들을 `Linked List`로 연결하여 저장하는 등의 방식을 활용할 수 있다.
 
 #### Bucket(버킷)
 
@@ -301,11 +301,62 @@ Hashing 된 Index에 이미 다른 값이 들어 있는 경우, 추가하고자 
 
 #### Entry(엔트리)
 
-해시 테이블은 key와 value를 저장하는 구조이므로 노드를 이용하여 key와 value를 저장할 수 있다. 이렇게 key와 value를 저장하는 노드를 Entry라고 한다.
+Hash Table은 key와 value를 저장하는 구조이므로 노드를 이용하여 key와 value를 저장할 수 있다. 이렇게 key와 value를 저장하는 노드를 `Entry`라고 한다.
+
+<br>
 
 ## How To Resolve the Hash Collision
 
 충돌 발생 시 이에 대응하기 위한 방법으로는 크게 `Separate Chaining(체이닝; 분리 연결)`과 `Open-Addressing(직접 주소 개방)`이 있다.
+
+### Open-Addressing(직접 주소 개방)
+
+`Open-Addressng` 방식은 bucket에 key가 1:1로 저장되는 방식으로 Chaining과 달리 Hash Table 외부에 연결된 노드가 존재하지 않는다. 따라서 이미 동일한 해시값으로 Hash Table에 키가 저장되어 있는 경우에는 `보조 해시 함수(Supplement Hash Function)`에 의해 빈 공간을 조사(Probing)하여 키를 저장한다. 즉, Hash Collision이 발생하면 다른 비어있는 bucket을 데이터를 저장하는 것이다. 만약 빈 공간이 존재하지 않을 경우, key를 저장할 수 없으며 Hash Table의 적재율을 체크하여 bucket의 크기를 확장할 수 있다. 이러한 `Open-Addressing` 방식은 대표적으로 `Linear Probing`, `Quadratic Probing`, `Double Hashing Probing` 세 가지 방법이 있으며, 보조 해시 함수의 형태에 따른 분류라고도 이해할 수 있다.
+
+#### Linear Probing
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kr60qq7z.png)
+[이미지 출처 - 코드 라떼](https://www.codelatte.io/)
+
+**`Linear Probing`은 이름 그대로 선형적인 특성을 가지고 있는 해시 함수를 이용하여 조사하는 방식**을 말한다. key를 찾거나, 삽입할 위치를 찾거나, 삭제할 키를 찾을 때 순차적으로 접근하는 방식을 택한다. 즉, **충돌이 발생하면 bucket index를 1씩 늘려가면서 조사**를 하는 방식이다.  
+Linear Probing은 결국 키의 충돌이 빈번할수록 키의 분포가 특정 영역에 군집되는 현상을 겪는다. 탐색의 특성 상 키를 찾거나 빈 공간을 만날 때까지 탐색하는데, 군집으로 인해 빈 공간이 존재하지 않는 경우 탐색 횟수가 많아져 성능이 떨어질 수 밖에 없다. 또한, 충돌이 발생하면 다른 위치에 key를 저장하게 되기 때문에 key를 삭제하는 경우 본래 hash value에 따라 재배치를 진행해야 한다. 이때 원활한 재배치를 위해서는 `Dummy Null Entry`를 삽입해야 하는데, 이러한 방식을 `Lazy Deletion`이라고 한다.
+
+> **Linear Probing에서의 Hash Function**
+> h(key, i) = (h'(key) + i) mod m (m is size of hash table)
+
+#### Time Complexity of Linear Probing
+
+|    **연산**     | 평균 | 최악 |
+| :-------------: | :--: | :--: |
+|  탐색(Search)   | O(1) | O(n) |
+| 삽입(Insertion) | O(1) | O(n) |
+| 삭제(Deletion)  | O(1) | O(n) |
+
+<br>
+
+#### Quadratic Probing
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kr60qzjx.png)
+[이미지 출처 - 코드 라떼](https://www.codelatte.io/)
+
+Quadratic Probing은 Linear Probing과 유사하나 보조 상수 c1, c2를 추가하여 non-linear하게 조사하는 방식이다. 이미지에서 보여지듯, 최초 조사를 시작할 때 i를 1씩 증가 시키는 것은 Linear Porbing과 동일하나, 보조 해시 함수를 c1, c2를 계수로 하는 i에 대한 2차 함수 형태로 갖는다. 이때 계수 c1, c2 값을 통해 충돌 키들이 군집되는 현상을 어느 정도 완화할 수 있으므로 적절한 c1, c2 값을 정해야 한다.
+
+> **Quadratic Probing에서의 Hash Function**
+> h(key, i) = (h'(key) + (c1 \* i) + (c2 \* i²)) mod m (m is size of hash table)
+
+<br>
+
+#### Double Hashing Probing
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kr60r9m2.png)
+[이미지 출처 - 코드 라떼](https://www.codelatte.io/)
+
+`Double Hashing`은 군집 문제를 완화하기 위해 두 개의 보조 해시 함수를 이용하여 최대한 균등하게 분포하도록 하는 방법이다. 최초 조사를 시작할 때 i를 1씩 증가시키되, h2(key) 보조 해시 함수에 의해 두 번째 탐색 위치가 달라진다. Double Hashing은 Quadratic Probing 방식보다 좀 더 가벼운 군집 문제를 겪는다.
+
+> **Double Hashing Probing에서의 Hash Function**
+> h(key, i) = (h1(key) + (i \* h2(key)) mod m (m is size of hash table)
+
+<hr>
 
 ### Chaining(체이닝)
 
@@ -316,7 +367,7 @@ Hashing 된 Index에 이미 다른 값이 들어 있는 경우, 추가하고자 
 
 #### Linked List를 이용한 방식
 
-각 노드들을 Linear하게 연결하는 것으로 각각의 bucket들을 Linked List로 만들어 Collision이 발생하면 해당 bucket의 list에 추가하는 방식이다. Linked List의 특징을 그대로 이어 받아 삽입과 삭제가 간단하다. 하지만 단점 역시도 그대로 적용 되기 때문에 데이터 저장 시 Linked List 자체의 오버헤드가 부담이 된다. 또한, Collision의 빈도가 많아 bucket의 특정 index에 key가 몰리는 경우 Search에 걸리는 시간 복잡도가 O(n)에 수렴하게 되는 것은 피할 수 없다. 삽입과 삭제 시에도 탐색의 과정이 필요하기 때문에 같은 문제가 발생한다. 그러나 bucket 만을 사용하는 Open Addressing 방식과 비교하면 테이블의 확장을 늦출 수는 있다.
+각 노드들을 Linear하게 연결하는 것으로 각각의 bucket들을 Linked List로 만들어 Collision이 발생하면 해당 bucket의 list에 추가하는 방식이다. Linked List의 특징을 그대로 이어 받아 삽입과 삭제가 간단하다. 하지만 단점 역시도 그대로 적용 되기 때문에 데이터 저장 시 Linked List 자체의 오버헤드가 부담이 된다. 또한, Collision의 빈도가 많아 bucket의 특정 index에 key가 몰리는 경우 Search에 걸리는 시간 복잡도가 O(n)에 수렴하게 되는 것은 피할 수 없다. 삽입과 삭제 시에도 탐색의 과정이 필요하기 때문에 같은 문제가 발생한다. 그러나 bucket 만을 사용하는 Open-Addressing 방식과 비교하면 테이블의 확장을 늦출 수는 있다.
 
 #### Time Complexity
 
@@ -331,7 +382,7 @@ Hashing 된 Index에 이미 다른 값이 들어 있는 경우, 추가하고자 
 #### Tree를 이용하는 방식 (Red-Black Tree)
 
 Linked List를 이용한 Chaining과 원리는 같으나, Linked List를 사용하지 않고 Tree 구조를 사용하는 `Non-Linear` 방식이다.`Java Collection`의 `Hash Map`에서는 `Red-Black Tree`를 사용하고 있다. 때문에 Search의 시간 복잡도를 `O(log n)`으로 만들 수 있는 `Red-Black Tree`의 장점으로 데이터의 양이 많은 상황에서 발생하는 성능 이슈를 해소할 수 있다.  
-다만, 완벽한 자료 구조라는 것은 존재하지 않기 때문에 Trade-Off를 해야 하는 부분이 있다. 일반적인 Linked List보다 Red-Black Tree의 노드에 더 많은 변수가 선언되어 있기 때문에 더 많은 메모리를 소모한다. 또한 Red-Black Tree는 균형을 잡기 위한 재배치 연산으로 인해 키의 삽입/삭제 성능이 떨어질 수 있다.
+다만, 완벽한 자료 구조라는 것은 존재하지 않기 때문에 `Trade-Off`를 해야 하는 부분이 있다. 일반적인 Linked List보다 Red-Black Tree의 노드에 더 많은 변수가 선언되어 있기 때문에 더 많은 메모리를 소모한다. 또한 Red-Black Tree는 균형을 잡기 위한 재배치 연산으로 인해 키의 삽입/삭제 성능이 떨어질 수 있다.
 
 그렇기 때문에 **충돌된 키 개수의 임계치에 따라서 구조를 바꾸는 전략**을 취할 수 있다. 충돌된 키의 개수가 적을 경우에는 Linked List를 사용하고, 충돌된 키의 개수가 많을 경우에는 Red-Black Tree를 사용하는 것이다. 충돌이 빈번하지 않은 경우는 Linked List의 장점을 극대화 하고, 충돌이 빈번한 경우는 Tree로 변경하면 된다. 이러한 방법은 **실제로 Java Collection의 Hash Map을 구현하고 있는 방법**이다.
 
@@ -344,3 +395,17 @@ Linked List를 이용한 Chaining과 원리는 같으나, Linked List를 사용�
 <br>
 
 #### 구조를 변경하는 충돌 키 개수의 임계치
+
+**Java Collection의 Hash Map에 적용된 entry 간의 연결 구조를 변환하는 기준은 하나의 bucket에 할당된 key-value 쌍의 개수**이다. 즉, 충돌 키의 개수를 기준으로 하며 같은 **bucket index를 갖는 key-value 쌍의 개수가 6개, 8개 일 경우에 구조를 변경**한다. 충돌키의 개수가 6개인 경우 Linked List와 Tree 모두 Search에 걸리는 평균 시간 복잡도는 O(3)일 것이다. 그러나 8개가 되면서부터 Linked List와 Tree의 평균 시간 복잡도는 각각 O(4), O(3)으로 차이가 벌어지며, 이 차이는 충돌 key-value 쌍의 수가 많아질수록 더 커지게 된다. 그렇기 때문에 충돌 키가 증가하여 8개가 되는 순간 Red-Black Tree로 구조를 변경하는 것이 유리한 것이다.
+
+그렇다면 키 삭제가 일어나 충돌 키가 8개 미만으로 감소하는 경우에는 어떨까? 시간 복잡도만을 놓고 본다면 충돌 키 개수가 7개가 되는 순간 Linked List로 변환을 해야 할 것이다. 그러나 실제 기준은 6개로 하고 있는데, 그 이유는 Tree 구조에서 Linked List 구조로 변환하는 과정에서도 `Switching cost`가 크기 때문이다. 만약 키의 삽입과 삭제가 빈번하여, 충돌 키의 증감이 반복되는 경우 구조 변경으로 인한 비용이 오히려 역효과를 가져오기 때문에 **Tree에서 Linked List로 변환하는 데에는 2개의 margin을 두어 6개를 기준**으로 한다.
+
+<hr>
+
+### Open-Addressing vs Separate Chaining
+
+두 가지 방식 모두 Worst Case에서의 Time Complexity는 O(n)이다. 그러나 Open-Addressing 방식은 연속된 공간에 데이터를 저장하기 때문에 Chaining에 비해 Cache 효율이 높다. 따라서 데이터의 개수가 충분히 적은 경우에는 Open-Addressing이 Chaining 보다 더 성능이 좋다. 단, Open-Addressing은 Chaining과 달리 bucket을 계속해서 사용하기 때문에 Hash Table의 확장은 더욱 빠르다.
+
+### Hash Bucket의 동적 확장(Resize)
+
+Hash bucket의 크기가 작다면 그만큼 메모리 사용을 줄일 수 있지만, 해시 충돌로 인해 성능 상의 손실이 발생한다. 그래서 Hash Map은 key-value 쌍 데이터가 일정 수준 이상 적재되면 bucket의 크기를 두 배로 늘린다. 이렇게 bucket size를 확장하게 되면 해시 충돌로 인한 성능 손실 문제를 어느 정도 해결할 수 있다. 이때 **bucket을 확장하는 임계점은 bucket 내 데이터 적재율이 75%가 되는 때이다. 이 임계점을 나타내는 숫자 0.75는 `Load Factor`라고 부른다.**
