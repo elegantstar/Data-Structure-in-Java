@@ -409,3 +409,9 @@ Linked List를 이용한 Chaining과 원리는 같으나, Linked List를 사용�
 ### Hash Bucket의 동적 확장(Resize)
 
 Hash bucket의 크기가 작다면 그만큼 메모리 사용을 줄일 수 있지만, 해시 충돌로 인해 성능 상의 손실이 발생한다. 그래서 Hash Map은 key-value 쌍 데이터가 일정 수준 이상 적재되면 bucket의 크기를 두 배로 늘린다. 이렇게 bucket size를 확장하게 되면 해시 충돌로 인한 성능 손실 문제를 어느 정도 해결할 수 있다. 이때 **bucket을 확장하는 임계점은 bucket 내 데이터 적재율이 75%가 되는 때이다. 이 임계점을 나타내는 숫자 0.75는 `Load Factor`라고 부른다.**
+
+<hr>
+
+# Graph
+
+`Graph`는 `Vertex(정점)`과 vertex를 연결하는 `Edge(간선)`의 집합으로 구성된 자료 구조를 말한다. 그래프는 `G=(V,E)`로 표기하는데 V는 Vertex의 집합이고 E는 Edge의 집합이다. 그리고 vertex u는 vertex의 집합에 속해 있으며(u ∈ V), edge(u,v)는 edge의 집합에 속해있다((u,v) ∈ E).
