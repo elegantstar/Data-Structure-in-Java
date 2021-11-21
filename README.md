@@ -414,4 +414,135 @@ Hash bucket의 크기가 작다면 그만큼 메모리 사용을 줄일 수 있�
 
 # Graph
 
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgbfwd.png)
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgbolg.png)
+[이미지 출처 - 코드라떼](https://www.codelatte.io/)
+
 `Graph`는 `Vertex(정점)`과 vertex를 연결하는 `Edge(간선)`의 집합으로 구성된 자료 구조를 말한다. 그래프는 `G=(V,E)`로 표기하는데 V는 Vertex의 집합이고 E는 Edge의 집합이다. 그리고 vertex u는 vertex의 집합에 속해 있으며(u ∈ V), edge(u,v)는 edge의 집합에 속해있다((u,v) ∈ E).
+
+> cf) Node와 Edge로 이루어진 Tree도 그래프의 일종이며, 사이클이 존재하지 않는 무방향 연결 그래프를 말한다.
+
+<br>
+
+## Complete Graph(완전 그래프)
+
+**모든 정점끼리 간선으로 연결되어 있는 그래프**를 `완전 그래프`라고 한다. 각 정점들은 모든 정점으로 연결되어 있는 간선을 가지고 있으며 하나라도 누락되어 있다면 완전 그래프가 아니다.
+<br>
+
+## Undirected Graph and Directed Graph
+
+### Undirected Graph(무방향 그래프)
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgca5h.png)
+[이미지 출처 - 코드라떼](https://www.codelatte.io/)
+
+`Undirected Graph(무방향 그래프)`는 **방향이 없는 간선을 가지고 양방향으로 진행**할 수 있으며, 무방향 그래프의 간선은 (u1, v2), (u2, v2)로 표현할 수 있다.
+
+### Directed Graph(방향 그래프)
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgctnb.png)
+[이미지 출처 - 코드라떼](https://www.codelatte.io/)
+
+`Directed Graph(방향 그래프)`는 **방향이 있는 간선을 가지며, 각 간선은 한 방향으로만 진행**할 수 있다. 방향 그래프의 간선은 <u1, v2>, <u2, v2>로 표현할 수 있다.
+<br>
+
+## Degree of Vertex(정점의 차수)
+
+정점에 접한 간선의 수를 Degree(차수)라고 한다.
+
+### 무방향 그래프의 차수
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgdbzo.png)
+[이미지 출처 - 코드라떼](https://www.codelatte.io/)
+
+특정 정점을 기준으로 연결된 간선의 개수
+<br>
+
+### 방향 그래프의 차수
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgdwpw.png)
+[이미지 출처 - 코드라떼](https://www.codelatte.io/)
+
+`In-degree` : 특정 정점을 기준으로 안으로 들어오는 방향의 간선의 개수
+`Out-degree` : 특정 정점을 기준으로 밖으로 나가는 방향의 간선의 개수
+**Degree = In-degree + Out-degree**
+<br>
+
+## Path(경로)
+
+**정점 u로부터 정점 v까지의 정점의 순서열**을 `경로`라고 한다. 간선 (v1, v2), (v2, v3), (v3, v4)가 존재할 때 v1, v2 v3를 말한다.
+
+### Simple Path(단순 경로)
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgfagq.png)
+[이미지 출처 - 코드라떼](https://www.codelatte.io/)
+
+`Simple Path(단순 경로)`는 **한 경로 상에 있는 모든 정점들이 서로 다른 경우**를 말한다. 다만 단순 경로에서 시작 정점과 마지막 정점은 동일할 수 있다. 예시로 2, 0, 1, 2는 단순 경로이지만 2, 0, 1, 2, 3은 단순 경로가 아니다.
+
+### Cycle(순환)
+
+**출발지와 도착지가 같은 단순 경로**를 `Cycle(순환)`이라고 한다.
+<br>
+
+## Weight Graph(가중치 그래프)
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgfxc7.png)
+[이미지 출처 - 코드라떼](https://www.codelatte.io/)
+
+**간선에 가중치가 있는 그래프**를 `Weight Graph(가중치 그래프)`라고 한다. 간선에 가중치가 존재한다면 특정 경로의 간선의 길이는 가중치의 합으로 계산한다.
+<br>
+
+## Graph vs Tree
+
+|           |                            **그래프**                             |                        트리                         |
+| :-------: | :---------------------------------------------------------------: | :-------------------------------------------------: |
+|   정의    |            정점(Vertex)과 간선(Edge)로 구성된 자료구조            |              무방향 비순환 연결 그래프              |
+|   모델    |                             네트워크                              |                        계층                         |
+| 정점/노드 | 루트 노드가 존재하지 않으며 부모와 자식 간의 관계가 존재하지 않음 | 루트 노드가 존재하며 부모와 자식 간의 관계가 형성됨 |
+|   간선    |          간선이 존재할 수도 있고 존재하지 않을 수도 있음          |    N개의 노드가 있으면 항상 N-1개의 간선이 존재     |
+|   방향    |                    방향 그래프, 무방향 그래프                     |                    무방향 그래프                    |
+
+<hr>
+
+## 그래프의 구현 방법
+
+![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshh6xev.png)
+[이미지 출처 - 코드라떼](https://www.codelatte.io/)
+
+그래프를 자료 구조로 표현하는 방법으로는 크게 `Adjacency-Matrix(인접 행렬)` 방식과 `Adjacency-List(인접 리스트)` 방식이 있다.
+
+### Adjacency-Matrix(인접 행렬)
+
+그래프를 `Adjacency-Matrix(인접 행렬)`로 표현할 경우 **간선의 개수와 상관 없이 정점의 개수|V|에 따라 O(V^2) 메모리 공간이 필요**하다. **Space Complexity = O(V^2)**. 예시로 정점의 개수가 8개인 경우 64개의 공간이 필요하다. 그러므로 정점의 수가 많을수록 더 많은 메모리가 필요하다. Adjacency-matrix는 `Dense graph`를 표현할 때 적절한 방법이다.
+
+### Adjacency-List(인접 리스트)
+
+그래프를 `Adjacency-List(인접 리스트)`로 표현할 경우 정점(V)의 개수와 간선(E)의 개수 만큼만 메모리 공간을 소모하기 때문에 O(V+E) 메모리 공간이 필요하다. **Space Complexity = O(V+E)**. Adjacency-List는 `Sparse graph`를 표현할 때 적절한 방법이다.
+
+<hr>
+
+## Graph Traversal - DFS & BFS
+
+그래프는 정점의 구성 뿐 아니라 간선의 연결에도 규칙이 존재하지 않기 때문에 탐색이 복잡하다. 따라서 그래프의 모든 정점을 탐색하기 위한 두 가지 알고리즘을 활용할 수 있는데, 바로 `DFS(Depth First Search, 깊이 우선 탐색)`와 `BFS(Breadth First Search, 너비 우선 탐색)`이다.
+
+### Depth First Search(DFS, 깊이 우선 탐색)
+
+`DFS`는 **그래프 상에 존재하는 임의의 한 정점으로부터 연결되어 있는 다른 하나의 정점으로 나아가는 탐색 방법**이다. 시작 정점으로부터 연결된 다른 하나의 정점으로 나아가고, 다시 도착한 정점으로부터 연결된 또 다른 정점으로 나아가는 방식으로 더 이상 연결된 새로운 정점이 없을 때까지 탐색한다. 이때 한 번 방문한 정점은 방문 체크를 하여 중복 방문하지 않도록 해야 한다. 만약 더 이상 연결된 정점이 없다면, 바로 이전 분기점으로 돌아가서 방문하지 않은 새로운 정점을 탐색한다.  
+하나의 정점에서 출발하여 더 이상 연결된 정점이 없을 때까지 나아가며 탐색하는 방식이기 때문에 Depth를 우선적으로 탐색한다는 의미로 DFS라고 부른다. **DFS는 Stack 자료 구조를 활용하여 구현**할 수 있으며, **Time Complexity는 O(V+E)이다.**
+
+### Breadth First Search(BFS, 너비 우선 탐색)
+
+`BFS`는 **그래프 상에 존재하는 임의의 한 정점으로부터 연결되어 있는 모든 정점으로 나아가는 탐색 방법**이다. Tree에서 Level Order Travaersal과 같은 방법으로 볼 수 있다. **BFS 구현은 Queue 자료 구조를 활용**하는데, 방문할 정점의 순서를 기억하기 위함이다. 먼저, 탐색을 시작하는 정점을 Queue에 삽입(add)하고, poll을 하여 해당 정점과 연결된 정점들을 Queue에 삽입하고 방문 체크를 한다. 이후, 동일한 방법으로 탐색을 진행하면 되는데 Queue에서 꺼낸(poll) 정점과 연결된 정점들 중 방문하지 않은 정점들만 Queue에 삽입(add)하면 된다. 이런 반복 연산을 Queue가 비워질 때까지 진행하면 모든 정점을 방문할 수 있게 된다.
+하나의 정점에서 나아갈 수 있는 모든 정점들을 탐색하고, 탐색한 정점의 순서대로 다시 나아갈 수 있는 정점들을 탐색하는 방식이기 때문에 Breadth를 우선적으로 탐색한다는 의미로 BFS라고 부른다. 즉, 시작 정점으로부터 같은 Depth를 갖는 정점들을 모두 탐색한 후, 그 다음 Depth에 위치한 정점들을 탐색하는 것이다. **BFS의 Time Complexity도 O(V+E)이지만, BFS의 탐색 경로는 `최단 경로`가 된다는 특징**이 있다.
+
+<hr>
+
+## Minimum Spanning Tree(최소 신장 트리)
+
+### Spanning Tree(신장 트리)
+
+`Spanning Tree(신장 트리)`는 **Cycle(순환) 없이 모든 정점을 연결하는 그래프**를 말한다.
+
+### Minimum Spanning Tree(최소 신장 트리)
+
+`Minimum Spanning Tree(최소 신장 트리)`는 **모든 정점을 Cycle(순환) 없이 최소 간선 비용으로 모든 정점을 연결하는 그래프**를 말한다. 즉, Spanning Tree 중에서 Edge Weight의 합이 최소인 Spanning Tree가 Minimum Spanning Tree이다. 이런한 Minimum Spanning Tree를 만들 수 있는 대표적인 알고리즘으로는 `Kruskal's Algorithm`, `Prim's Algorithm`이 있다.
