@@ -356,6 +356,13 @@ Quadratic Probing은 Linear Probing과 유사하나 보조 상수 c1, c2를 추�
 > **Double Hashing Probing에서의 Hash Function**  
 > h(key, i) = (h1(key) + (i \* h2(key)) mod m (m is size of hash table)
 
+<br>
+
+##### Implementation Practice
+
+- [Linear Probing Hash Table 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_20_open_adressing_hash_table/linear/LinearProbingHashTable.java)
+- [Quadratic Probing Hash Table 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_16_avl_tree/AVLTree.java)
+
 <hr>
 
 ### Chaining(체이닝)
@@ -376,6 +383,12 @@ Quadratic Probing은 Linear Probing과 유사하나 보조 상수 c1, c2를 추�
 |  탐색(Search)   | O(1) | O(n) |
 | 삽입(Insertion) | O(1) | O(n) |
 | 삭제(Deletion)  | O(1) | O(n) |
+
+<br>
+
+##### Implementation Practice
+
+- [Chaining Hash Table 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_21_chaining_hash_table/ChainingHashTable.java)
 
 <br>
 
@@ -409,6 +422,18 @@ Linked List를 이용한 Chaining과 원리는 같으나, Linked List를 사용�
 ### Hash Bucket의 동적 확장(Resize)
 
 Hash bucket의 크기가 작다면 그만큼 메모리 사용을 줄일 수 있지만, 해시 충돌로 인해 성능 상의 손실이 발생한다. 그래서 Hash Map은 key-value 쌍 데이터가 일정 수준 이상 적재되면 bucket의 크기를 두 배로 늘린다. 이렇게 bucket size를 확장하게 되면 해시 충돌로 인한 성능 손실 문제를 어느 정도 해결할 수 있다. 이때 **bucket을 확장하는 임계점은 bucket 내 데이터 적재율이 75%가 되는 때이다. 이 임계점을 나타내는 숫자 0.75는 `Load Factor`라고 부른다.**
+
+<br>
+
+##### Implementation Practice (Hash Table Using Singly Linked List and Red-Black Tree)
+
+Collection Library HashMap의 개념을 적용한 Hash Table 구현 연습
+
+- [Node 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_22_hash_table_using_red_black_tree/Node.java)
+- [Singly Linked List 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_22_hash_table_using_red_black_tree/SinglyLinkedList.java)
+- [Tree Node 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_22_hash_table_using_red_black_tree/TreeNode.java)
+- [Red-Black Tree 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_22_hash_table_using_red_black_tree/RedBlackTree.java)
+- [Hash Table 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_22_hash_table_using_red_black_tree/CLHashTable.java)
 
 <hr>
 
@@ -519,6 +544,13 @@ Hash bucket의 크기가 작다면 그만큼 메모리 사용을 줄일 수 있�
 
 그래프를 `Adjacency-List(인접 리스트)`로 표현할 경우 정점(V)의 개수와 간선(E)의 개수 만큼만 메모리 공간을 소모하기 때문에 O(V+E) 메모리 공간이 필요하다. **Space Complexity = O(V+E)**. Adjacency-List는 `Sparse graph`를 표현할 때 적절한 방법이다.
 
+<br>
+
+##### Implementation Practice
+
+- [Adjacency-Matrix Graph 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_23_graph/adjacency_matrix_graph/AdjacencyMatrixGraph.java)
+- [Adjacency-List Graph 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_23_graph/adjacency_list_graph/AdjacencyListGraph.java)
+
 <hr>
 
 ## Graph Traversal - DFS & BFS
@@ -535,6 +567,13 @@ Hash bucket의 크기가 작다면 그만큼 메모리 사용을 줄일 수 있�
 `BFS`는 **그래프 상에 존재하는 임의의 한 정점으로부터 연결되어 있는 모든 정점으로 나아가는 탐색 방법**이다. Tree에서 Level Order Travaersal과 같은 방법으로 볼 수 있다. **BFS 구현은 Queue 자료 구조를 활용**하는데, 방문할 정점의 순서를 기억하기 위함이다. 먼저, 탐색을 시작하는 정점을 Queue에 삽입(add)하고, poll을 하여 해당 정점과 연결된 정점들을 Queue에 삽입하고 방문 체크를 한다. 이후, 동일한 방법으로 탐색을 진행하면 되는데 Queue에서 꺼낸(poll) 정점과 연결된 정점들 중 방문하지 않은 정점들만 Queue에 삽입(add)하면 된다. 이런 반복 연산을 Queue가 비워질 때까지 진행하면 모든 정점을 방문할 수 있게 된다.
 하나의 정점에서 나아갈 수 있는 모든 정점들을 탐색하고, 탐색한 정점의 순서대로 다시 나아갈 수 있는 정점들을 탐색하는 방식이기 때문에 Breadth를 우선적으로 탐색한다는 의미로 BFS라고 부른다. 즉, 시작 정점으로부터 같은 Depth를 갖는 정점들을 모두 탐색한 후, 그 다음 Depth에 위치한 정점들을 탐색하는 것이다. **BFS의 Time Complexity도 O(V+E)이지만, BFS의 탐색 경로는 `최단 경로`가 된다는 특징**이 있다.
 
+<br>
+
+##### Implementation Practice
+
+- [Adjacency-Matrix Graph로 DFS & BFS 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_24_graph_traversal_dfs_and_bfs/adjacency_matrix_graph/AdjacencyMatrixGraph.java)
+- [Adjacency-List Graph로 DFS & BFS 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_24_graph_traversal_dfs_and_bfs/adjacency_list_graph/AdjacencyListGraph.java)
+
 <hr>
 
 ## Minimum Spanning Tree(최소 신장 트리)
@@ -546,3 +585,10 @@ Hash bucket의 크기가 작다면 그만큼 메모리 사용을 줄일 수 있�
 ### Minimum Spanning Tree(최소 신장 트리)
 
 `Minimum Spanning Tree(최소 신장 트리)`는 **모든 정점을 Cycle(순환) 없이 최소 간선 비용으로 모든 정점을 연결하는 그래프**를 말한다. 즉, Spanning Tree 중에서 Edge Weight의 합이 최소인 Spanning Tree가 Minimum Spanning Tree이다. 이런한 Minimum Spanning Tree를 만들 수 있는 대표적인 알고리즘으로는 `Kruskal's Algorithm`, `Prim's Algorithm`이 있다.
+
+<br>
+
+##### Implementation Practice
+
+- [Kruskal's Algorithm을 이용한 Minimum Spanning Tree 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_25_minimum_spanning_tree/kruskal_algorithm/Graph.java)
+- [Prim's Algorithm을 이용한 Minimum Spanning Tree 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_25_minimum_spanning_tree/prim_algorithm/Graph.java)
