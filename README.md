@@ -461,14 +461,14 @@ Collection Library HashMap의 개념을 적용한 Hash Table 구현 연습
 ![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgca5h.png)
 [이미지 출처 - 코드라떼](https://www.codelatte.io/)
 
-`Undirected Graph(무방향 그래프)`는 **방향이 없는 간선을 가지고 양방향으로 진행**할 수 있으며, 무방향 그래프의 간선은 (u1, v2), (u2, v2)로 표현할 수 있다.
+`Undirected Graph(무방향 그래프)`는 **방향이 없는 간선을 가지고 양방향으로 진행**할 수 있으며, 무방향 그래프의 간선은 (u1, v1), (u2, v2)로 표현할 수 있다.
 
 ### Directed Graph(방향 그래프)
 
 ![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgctnb.png)
 [이미지 출처 - 코드라떼](https://www.codelatte.io/)
 
-`Directed Graph(방향 그래프)`는 **방향이 있는 간선을 가지며, 각 간선은 한 방향으로만 진행**할 수 있다. 방향 그래프의 간선은 <u1, v2>, <u2, v2>로 표현할 수 있다.
+`Directed Graph(방향 그래프)`는 **방향이 있는 간선을 가지며, 각 간선은 한 방향으로만 진행**할 수 있다. 방향 그래프의 간선은 <u1, v1>, <u2, v2>로 표현할 수 있다.
 <br>
 
 ## Degree of Vertex(정점의 차수)
@@ -488,7 +488,7 @@ Collection Library HashMap의 개념을 적용한 Hash Table 구현 연습
 ![image](https://d1lic7t7i99g4n.cloudfront.net/photo/kshgdwpw.png)
 [이미지 출처 - 코드라떼](https://www.codelatte.io/)
 
-`In-degree` : 특정 정점을 기준으로 안으로 들어오는 방향의 간선의 개수
+`In-degree` : 특정 정점을 기준으로 안으로 들어오는 방향의 간선의 개수  
 `Out-degree` : 특정 정점을 기준으로 밖으로 나가는 방향의 간선의 개수
 **Degree = In-degree + Out-degree**
 <br>
@@ -580,11 +580,19 @@ Collection Library HashMap의 개념을 적용한 Hash Table 구현 연습
 
 ### Spanning Tree(신장 트리)
 
-`Spanning Tree(신장 트리)`는 **Cycle(순환) 없이 모든 정점을 연결하는 그래프**를 말한다.
+`Spanning Tree(신장 트리)`는 어떤 그래프의 부분 그래프로서 **Cycle(순환) 없이 모든 정점을 연결하는 그래프**를 말한다.
 
 ### Minimum Spanning Tree(최소 신장 트리)
 
-`Minimum Spanning Tree(최소 신장 트리)`는 **모든 정점을 Cycle(순환) 없이 최소 간선 비용으로 모든 정점을 연결하는 그래프**를 말한다. 즉, Spanning Tree 중에서 Edge Weight의 합이 최소인 Spanning Tree가 Minimum Spanning Tree이다. 이런한 Minimum Spanning Tree를 만들 수 있는 대표적인 알고리즘으로는 `Kruskal's Algorithm`, `Prim's Algorithm`이 있다.
+`Minimum Spanning Tree(최소 신장 트리)`는 어떤 그래프의 부분 그래프로서 **모든 정점을 Cycle(순환) 없이 최소 간선 비용으로 모든 정점을 연결하는 그래프**를 말한다. 즉, Spanning Tree 중에서 Edge Weight의 합이 최소인 Spanning Tree가 Minimum Spanning Tree이다. 이런한 Minimum Spanning Tree를 만들 수 있는 대표적인 알고리즘으로는 `Kruskal's Algorithm`, `Prim's Algorithm`이 있다.
+
+#### Prim's Algorithm
+
+Prim의 알고리즘은 임의의 정점과 인접 정점 중 최소 비용 간선을 선택하면서 최소 신장 트리를 만들어 가는 알고리즘을 말한다. Prim의 알고리즘은 MST를 만들어가는 모든 과정에서 항상 연결된 트리를 이루며, Dense Graph에 대해 Kruskal 알고리즘보다 더 효율적이다.
+
+#### Kruskal's Algorithm
+
+Kruskal의 알고리즘은 비용이 작은 간선을 하나씩 선택하면서 MST를 만들어 가는 알고리즘을 말한다. 그 과정에서 DisjointSet의 개념이 사용되는데, 모든 정점이 서로 다른 집합에 속해있다는 가정으로 시작한다. 비용이 가장 작은 간선을 하나씩 선택하여 연결된 정점들을 하나의 집합으로 합쳐가기 때문에 최종적으로는 모든 정점이 하나의 집합에 포함된다. Kruskal 알고리즘은 모든 간선을 PriorityQueue에 넣어 MST를 만들어 가는 방식이기 때문에 간선 수가 적은 Sparse Graph에서 효과적이다.
 
 <br>
 
