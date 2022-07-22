@@ -361,7 +361,7 @@ Quadratic Probing은 Linear Probing과 유사하나 보조 상수 c1, c2를 추�
 ##### Implementation Practice
 
 - [Linear Probing Hash Table 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_20_open_adressing_hash_table/linear/LinearProbingHashTable.java)
-- [Quadratic Probing Hash Table 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_16_avl_tree/AVLTree.java)
+- [Quadratic Probing Hash Table 구현](https://github.com/elegantstar/Data-Structure-in-Java/blob/master/src/_20_open_adressing_hash_table/quadratic/QuadraticProbingHashTable.java)
 
 <hr>
 
